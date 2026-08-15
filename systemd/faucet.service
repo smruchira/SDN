@@ -1,0 +1,19 @@
+[Unit]
+Description=Faucet SDN Controller
+Documentation=https://docs.faucet.nz
+After=openvswitch-switch.service network.target
+Requires=openvswitch-switch.service
+
+[Service]
+Type=simple
+User=root
+EnvironmentFile=-/etc/environment
+ExecStart=/opt/faucet-venv/bin/faucet --verbose
+WorkingDirectory=/etc/faucet
+StandardOutput=journal
+StandardError=journal
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

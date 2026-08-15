@@ -1,0 +1,19 @@
+[Unit]
+Description=SDN Gateway REST API (Flask)
+Documentation=file:///opt/sdn/PROJECT.md
+After=faucet.service openvswitch-switch.service network.target
+Requires=faucet.service
+
+[Service]
+Type=simple
+User=root
+EnvironmentFile=-/etc/environment
+WorkingDirectory=/opt/sdn
+ExecStart=/opt/sdn/venv/bin/python3 -m sdn.alert_api
+StandardOutput=journal
+StandardError=journal
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
