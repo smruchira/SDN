@@ -1,0 +1,47 @@
+acls:
+  iot_policy:
+  - rule:
+      actions:
+        drop: true
+      dl_src: 11:22:33:44:55:66
+  - rule:
+      actions:
+        drop: true
+      dl_src: 00:11:22:33:44:55
+  - rule:
+      actions:
+        allow: true
+        meter:
+          meter_id: 21879
+          rate: 512
+      dl_src: 11:22:33:44:55:77
+  - rule:
+      actions:
+        allow: true
+dps:
+  pi-switch:
+    dp_id: 1
+    hardware: Open vSwitch
+    interfaces:
+      1:
+        acls_in:
+        - iot_policy
+        description: IoT Wi-Fi AP
+        name: wlan0
+        native_vlan: iot
+      2:
+        description: Internet uplink
+        name: eth0
+        native_vlan: iot
+meters:
+  21879:
+    entry:
+      bands:
+      - rate: 512
+        type: DROP
+      flags: KBPS
+    meter_id: 21879
+vlans:
+  iot:
+    description: IoT device VLAN
+    vid: 100
