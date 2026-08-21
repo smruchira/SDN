@@ -11,7 +11,11 @@ routed through Open vSwitch, controlled by Faucet.
 ## Setup (Raspberry Pi 4)
 
 ```bash
-git clone <your-repo> /tmp/sdn && cd /tmp/sdn
+<<<<<<< HEAD
+git clone https://github.com/smruchira/SDN.git /tmp/sdn && cd /tmp/sdn
+=======
+git clone https://github.com/smruchira/SDN/tmp/sdn && cd /tmp/sdn
+>>>>>>> b0f111d85181e662dee3a74798bfa059d8f3c75d
 sudo bash scripts/setup_pi.sh
 ```
 
